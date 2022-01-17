@@ -1,6 +1,8 @@
 package ca.sait.calculators.servlets;
 
 import java.io.*;
+import java.util.*;
+import java.lang.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -35,7 +37,7 @@ public class AgeCalculatorServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NumberFormatException, IllegalFormatConversionException {
         String ageInput = request.getParameter("age");
 
         if (ageInput != null){
@@ -48,11 +50,16 @@ public class AgeCalculatorServlet extends HttpServlet {
         String message = String.format("You will be %d after your next birthday.", age);
 
         request.setAttribute("message", message);
-        } catch (Exception ex) {
+        } catch (NumberFormatException | IllegalFormatConversionException ex) {
             //When input exists but not a number
+           String message = String.format("%s is not a number, enter numerical values only.", ageInput);
+           
+           request.setAttribute("message", message);
         }
     } else {
-     //When Age input is missing
+            String message = String.format("You must provide your current age", ageInput );
+           
+            request.setAttribute("message", message);
     }
         getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response);
     }

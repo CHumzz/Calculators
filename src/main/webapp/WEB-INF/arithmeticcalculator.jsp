@@ -21,15 +21,16 @@
                     <label for="second">Second</label>
                     <input type="number" id="second" name="second">
                     <br>
-                    <tr><input type="button" id="add" name="add"></tr>
-                    <tr><input type="button" id="minus" name="minus"></tr>
-                    <tr><input type="button" id ="multiply" name="multiply"></tr>
-                    <tr><input type="button" id="divide" name="divide"> </tr>
+                    <tr><button type = "submit" name="operation" value="add">+</button></tr>
+                    <tr><button type = "submit" name="operation" value="minus">-</button></tr>
+                    <tr><button type = "submit" name="operation" value="multiply">*</button></tr>
+                    <tr><button type = "submit" name="operation" value="divide">/</button></tr>
                     <br>
                     <br>
-                    
+                   
                 </form>
-                <span id ="result"></span>
+                <p>Result: ${result}</p>
+                <p>${message}</p>
                 <a href="age"> Age Calculator</a>
             <br>
             <br>

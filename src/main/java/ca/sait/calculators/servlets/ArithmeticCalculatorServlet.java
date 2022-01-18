@@ -12,57 +12,57 @@ import javax.servlet.http.*;
  */
 public class ArithmeticCalculatorServlet extends HttpServlet {
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("result", "---");
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NumberFormatException, IllegalFormatConversionException {
-     /*   String ageInput = request.getParameter("age");
+            throws ServletException, IOException, NullPointerException, NumberFormatException, IllegalFormatConversionException {
+        String num1 = request.getParameter("first");
+        String num2 = request.getParameter("second");
+        int result = 0;
+      //  int first = Integer.parseInt(num1);
+      //  int second = Integer.parseInt(num2);
+        
+     /*   while (num1.matches("") || num2.matches("")){
+            request.setAttribute("result", "---");
+        } */
+            try{ 
+                    int first = Integer.parseInt(num1);
+                    int second = Integer.parseInt(num2);
 
-        if (ageInput != null){
+                if (request.getParameter("operation").equals("add")){                  
+                    result = first + second;
+                    request.setAttribute("result", result);
 
-            try{
+                   } else if (request.getParameter("operation").equals("minus")){                  
+                    result = first - second;
+                    request.setAttribute("result", result);
 
-            int age = Integer.parseInt(ageInput);
+                   } else if (request.getParameter("operation").equals("multiply")){
+                    result = first * second;
+                    request.setAttribute("result", result);
 
-            age++;
-
-            String message = String.format("You will be %d after your next birthday.", age);
-
-            request.setAttribute("message", message);
-
+                   } else if (request.getParameter("operation").equals("divide")){                    
+                    result = first / second;
+                    request.setAttribute("result", result);
+                   }
+            
+            } catch (NullPointerException ex) {
+                String message = String.format("Invalid" );
+                request.setAttribute("result", message);
+                
             } catch (NumberFormatException | IllegalFormatConversionException ex) {
-            //When input exists but not a number
-            String message = String.format("%s is not a number, enter numerical values only.", ageInput);
-           
-           request.setAttribute("message", message);
-            }
-        } else {
-            String message = String.format("You must provide your current age", ageInput );
-           
-            request.setAttribute("message", message);
-        }*/
+                String message = String.format("Invalid.");
+                request.setAttribute("result", message);
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
     }
 }
+
+

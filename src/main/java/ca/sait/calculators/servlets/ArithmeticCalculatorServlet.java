@@ -10,7 +10,7 @@ import javax.servlet.http.*;
  * Determines the next age of the person.
  * @author Cole Humeniuk
  */
-public class AgeCalculatorServlet extends HttpServlet {
+public class ArithmeticCalculatorServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -23,7 +23,7 @@ public class AgeCalculatorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
         
     }
 
@@ -38,7 +38,7 @@ public class AgeCalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NumberFormatException, IllegalFormatConversionException {
-        String ageInput = request.getParameter("age");
+     /*   String ageInput = request.getParameter("age");
 
         if (ageInput != null){
 
@@ -62,7 +62,7 @@ public class AgeCalculatorServlet extends HttpServlet {
             String message = String.format("You must provide your current age", ageInput );
            
             request.setAttribute("message", message);
-        }
-        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response);
+        }*/
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
     }
 }

@@ -26,12 +26,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         String num1 = request.getParameter("first");
         String num2 = request.getParameter("second");
         int result = 0;
-      //  int first = Integer.parseInt(num1);
-      //  int second = Integer.parseInt(num2);
-        
-     /*   while (num1.matches("") || num2.matches("")){
-            request.setAttribute("result", "---");
-        } */
+         
             try{ 
                     int first = Integer.parseInt(num1);
                     int second = Integer.parseInt(num2);
